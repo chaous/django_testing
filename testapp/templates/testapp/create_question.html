@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+        <html>
+        <head><title>Create question</title></head>
+        <body>
+            <h1>Create question</h1>
+            {% for m in messages %}
+              <p style="color:green;">{{ m }}</p>
+            {% endfor %}
+            <form method="POST">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button>Save</button>
+            </form>
+            <a href="{% url 'home' %}">Home</a>
+        </body>
+        </html>

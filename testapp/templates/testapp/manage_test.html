@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage test</title>
+</head>
+<body>
+    <h1>Manage test: {{ test.title }}</h1>
+    
+    {% for m in messages %}
+      <p style="color:green;">{{ m }}</p>
+    {% endfor %}
+    
+    <p>{{ test.description }}</p>
+    
+    <a href="{% url 'create_question' test.id %}">Add question</a>
+    {% if user.is_staff %}
+      | <a href="{% url 'delete_test' test.id %}" style="color:red;">Delete test</a>
+    {% endif %}
+    
+    <hr>
+    <ul>
+      {% for q in questions %}
+        <li>
+          {{ q.text }} ({{ q.question_type }} / score={{ q.score }})
+          <!-- Убираем всякие условия, чтобы Answers показывалось
+               даже для question_type='text' -->
+          | <a href="{% url 'manage_answers' q.id %}">Answers</a>
+          
+          {% if user.is_staff %}
+            | <a href="{% url 'delete_question' q.id %}" style="color:red;">Delete question</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+    
+    <a href="{% url 'home' %}">Home</a>
+</body>
+</html>

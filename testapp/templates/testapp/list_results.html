@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><title>All results</title></head>
+<body>
+    <h1>All results</h1>
+    {% for m in messages %}
+      <p style="color:green;">{{ m }}</p>
+    {% endfor %}
+    <ul>
+      {% for st in all_results %}
+        <li>
+          {{ st.student.user.username }} => {{ st.test.title }}
+          => score={{ st.score }} => passed={{ st.passed }}
+          <!-- Новая ссылка «Details» → ведёт на test_result_view -->
+          | <a href="{% url 'test_result' st.id %}">Details</a>
+        </li>
+      {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}">Home</a>
+</body>
+</html>

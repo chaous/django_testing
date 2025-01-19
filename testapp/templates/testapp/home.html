@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+        <html>
+        <head><title>Home</title></head>
+        <body>
+            <h1>Home page for tests</h1>
+            {% for m in messages %}
+              <p style="color:green;">{{ m }}</p>
+            {% endfor %}
+            {% if user.is_authenticated %}
+              <p>Logged in as <b>{{ user.username }}</b></p>
+              <a href="{% url 'logout' %}">Logout</a>
+              {% if not user.is_staff %}
+                | <a href="{% url 'become_admin' %}">Become admin</a>
+              {% else %}
+                | You are admin
+              {% endif %}
+            {% else %}
+              <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a></p>
+            {% endif %}
+            <hr>
+            <ul>
+              <li><a href="{% url 'instructions' %}">Instructions</a></li>
+              <li><a href="{% url 'list_tests' %}">List tests</a></li>
+              <li><a href="{% url 'create_test' %}">Create test</a></li>
+              <li><a href="{% url 'test_access' %}">Enter test key</a></li>
+              <li><a href="{% url 'list_results' %}">All results (admin)</a></li>
+            </ul>
+        </body>
+        </html>

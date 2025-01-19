@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head><title>Test result</title></head>
+<body>
+    <h1>Result: {{ student_test.test.title }}</h1>
+    <p>Your score: {{ student_test.score }}</p>
+    {% if student_test.passed %}
+      <p style="color:green;">Тест пройден</p>
+    {% else %}
+      <p style="color:red;">Тест не пройден</p>
+    {% endif %}
+
+    <hr>
+    <h2>Answers detail</h2>
+    <ul>
+      {% for d in details %}
+        <li>
+          <strong>Q:</strong> {{ d.question.text }} <br>
+          <strong>Your answer:</strong> {{ d.user_text }} <br>
+          {% if d.correct %}
+            <span style="color:green;">(верно)</span>
+          {% else %}
+            <span style="color:red;">(неверно)</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <a href="{% url 'home' %}">Home</a>
+</body>
+</html>

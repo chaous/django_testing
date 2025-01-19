@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+        <html>
+        <head><title>{{ test.title }}</title></head>
+        <body>
+            <h1>{{ test.title }}</h1>
+            {% for m in messages %}
+              <p style="color:green;">{{ m }}</p>
+            {% endfor %}
+            <p>{{ test.description }}</p>
+            <form method="POST">
+              {% csrf_token %}
+              {% for q in questions %}
+                <div style="border:1px solid #ccc; margin:5px;">
+                  <h3>{{ q.text }} ({{ q.question_type }} / score={{ q.score }})</h3>
+                  {% if q.question_type == 'single' %}
+                    {% for ans in q.options.all %}
+                      <label>
+                        <input type="radio" name="q_{{q.id}}" value="{{ans.id}}">
+                        {{ ans.text }}
+                      </label><br>
+                    {% endfor %}
+                  {% elif q.question_type == 'multiple' %}
+                    {% for ans in q.options.all %}
+                      <label>
+                        <input type="checkbox" name="q_{{q.id}}" value="{{ans.id}}">
+                        {{ ans.text }}
+                      </label><br>
+                    {% endfor %}
+                  {% else %}
+                    <!-- text -->
+                    <input type="text" name="q_{{q.id}}" placeholder="Your answer">
+                  {% endif %}
+                </div>
+              {% endfor %}
+              <button>Finish</button>
+            </form>
+            <a href="{% url 'home' %}">Home</a>
+        </body>
+        </html>

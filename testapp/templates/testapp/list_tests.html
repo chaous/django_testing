@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+        <html>
+        <head><title>List tests</title></head>
+        <body>
+            <h1>List tests</h1>
+            {% for m in messages %}
+              <p style="color:green;">{{ m }}</p>
+            {% endfor %}
+            <ul>
+            {% for t in tests %}
+              <li>
+                <b>{{ t.title }}</b> (key: {{ t.access_key }})
+                <br>
+                <a href="{% url 'test_detail' t.id %}">Take test</a> |
+                <a href="{% url 'test_access' %}">Enter key</a>
+                {% if user.is_staff %}
+                  | <a href="{% url 'create_question' t.id %}">Add question</a>
+                  | <a href="{% url 'delete_test' t.id %}" style="color:red;">Delete</a>
+                {% endif %}
+              </li>
+            {% endfor %}
+            </ul>
+            <a href="{% url 'home' %}">Home</a>
+        </body>
+        </html>

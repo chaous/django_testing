@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+        <html>
+        <head><title>Test access</title></head>
+        <body>
+            <h1>Enter test key</h1>
+            {% for m in messages %}
+              <p style="color:green;">{{ m }}</p>
+            {% endfor %}
+            <form method="POST">
+              {% csrf_token %}
+              <input type="text" name="access_key" required>
+              <button>Go</button>
+            </form>
+            <a href="{% url 'home' %}">Home</a>
+        </body>
+        </html>

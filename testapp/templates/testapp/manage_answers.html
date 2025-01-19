@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+        <html>
+        <head><title>Manage answers</title></head>
+        <body>
+            <h1>Manage answers for {{ question.text }}</h1>
+            {% for m in messages %}
+              <p style="color:green;">{{ m }}</p>
+            {% endfor %}
+            <ul>
+            {% for ans in answers %}
+              <li>{{ ans.text }} ({{ ans.is_correct }})</li>
+            {% endfor %}
+            </ul>
+            <a href="{% url 'create_answer' question.id %}">Add answer</a> |
+            <a href="{% url 'home' %}">Home</a>
+        </body>
+        </html>
