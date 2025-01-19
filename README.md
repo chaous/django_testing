@@ -8,8 +8,8 @@
 
 1. Клонируйте репозиторий:
     ```bash
-    git clone <ссылка на репозиторий>
-    cd <папка репозитория>
+    git clone https://github.com/chaous/django_testing
+    cd django_testing
     ```
 
 2. Убедитесь, что у вас установлен Python версии 3.8 или выше.
