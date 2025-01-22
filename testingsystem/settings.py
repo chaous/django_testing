@@ -5,7 +5,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-REPLACE_ME'
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*'] # знаю что прлохо, для продакшен, но для запуска через ngrog так проще, особенно так как у меня бесплатный ngrok, а для того чтобы фиксировать ссылки нужен платный
+CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']  #  чтобы работали с беплатном ngrok
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -21,7 +22,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware', убрал чтобы раотал бесплатный ngrok 
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
