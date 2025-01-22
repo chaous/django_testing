@@ -117,33 +117,33 @@
 Для того чтобы сервер был доступен с других устройств, можно использовать ngrok:
 
 1. Установите ngrok (если еще не установили):
-/`/`/`bash
+///bash
 brew install ngrok
-/`/`/`
+///
 
    Для других систем инструкции можно найти [здесь](https://ngrok.com/download).
 
 2. Запустите локальный сервер Django:
-/`/`/`bash
+///bash
 python manage.py runserver 0.0.0.0:8000
-/`/`/`
+///
 
 3. В другой терминальной вкладке запустите ngrok:
-/`/`/`bash
+///bash
 ngrok http 8000
-/`/`/`
+///
 
 4. После запуска ngrok вы увидите публичный URL, например:
-/`/`/`perl
+///perl
 Forwarding    https://11f4-94-43-64-238.ngrok-free.app -> http://localhost:8000
-/`/`/`
+///
 
 5. Добавьте текущий публичный URL ngrok в настройку `CSRF_TRUSTED_ORIGINS` в `settings.py`:
-/`/`/`python
+///python
 CSRF_TRUSTED_ORIGINS = [
     'https://11f4-94-43-64-238.ngrok-free.app'
 ]
-/`/`/`
+///
 
 6. Теперь сервер будет доступен по публичному URL, который выдает ngrok.
 
